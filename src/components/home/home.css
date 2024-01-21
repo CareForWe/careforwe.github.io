@@ -1,0 +1,80 @@
+.landing {
+    height: calc(100vh - var(--nav_height));
+    display: flex;
+}
+
+
+.landing_introduction {
+    margin: 0% 5% 0% 5%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.landing_title {
+    font-weight: 700;
+    font-size: 6rem;
+    color: var(--primary-text-color-1);
+}
+
+.landing_title_we {
+    color: var(--primary-text-color-2);
+}
+
+.landing_subtitle {
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: var(--primary-text-color-1);
+}
+
+.landing_text {
+    font-size: 1.4rem;
+    width: 65%;
+    font-weight: 300;
+    line-height: 2.5rem;
+}
+
+.landing_pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.landing_img {
+    height: 80%;
+}
+
+.homeFindOutMoreBtn {
+    cursor: pointer;
+    margin-top: 2rem;
+    height: auto;
+    width: 25%;
+    min-width: fit-content;
+    background: -webkit-linear-gradient(0deg, transparent 50%, var(--primary-text-color-1) 50%);
+    background-size: 800px 80px;
+    border: 2.5px solid var(--primary-text-color-1);
+    color: var(--primary-text-color-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.8s;
+    position: relative;
+    text-decoration: none;
+    border-radius: 50px;
+}
+
+.homeFindOutMoreBtn:hover {
+    background-position: 300px 0;
+    color: var(--background-color);
+}
+
+.homeFindOutMoreBtnText {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 3% 0px;
+    margin: 0px 15px 0px 15px
+}
