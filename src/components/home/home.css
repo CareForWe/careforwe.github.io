@@ -127,6 +127,7 @@ section {
 .aboutUs_title {
     font-weight: 600;
     font-size: 3.5rem;
+    color: var(--primary-text-color-1);
 }
 
 .aboutUs_sec {
@@ -150,6 +151,7 @@ section {
 .aboutUs_subtitle {
     font-size: 1.3rem;
     font-weight: 600;
+    color: var(--primary-text-color-1);
 }
 
 .aboutUs_text {

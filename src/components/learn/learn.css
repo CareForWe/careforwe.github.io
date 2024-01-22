@@ -1,0 +1,108 @@
+.learn {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcomeSecWrapper {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    display: flex;
+    width: 100vw;
+}
+.welcomeSec {
+    display: flex;
+    flex-direction: row;
+    margin: 2% 5% 0 5%;
+    width: 100%;
+    justify-content: center;
+}
+
+.doctor_img {
+    height: 25rem;
+}
+
+.welcomeSec_content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 5%;
+    justify-content: center;
+}
+
+.welcomeTitle {
+    font-weight: 600;
+    font-size: 3rem;
+    color: var(--primary-text-color-1);
+}
+
+.welcomeText {
+    font-weight: 300;
+    font-size: 1.4rem;
+}
+
+.learn_content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.learn_path_sec {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 5% 0 5% 0;
+}
+
+.pathSec_content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    margin-left: 5%;
+}
+
+.pathSec_title {
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.pathSec_subtitle {
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+.basic_img {
+    height: 15rem;
+}
+
+.learnExploreBtn {
+    cursor: pointer;
+    margin-top: 2rem;
+    height: auto;
+    width: 18%;
+    min-width: fit-content;
+    background: -webkit-linear-gradient(0deg, transparent 50%, var(--primary-text-color-1) 50%);
+    background-size: 800px 80px;
+    border: 2.5px solid var(--primary-text-color-1);
+    color: var(--primary-text-color-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.8s;
+    position: relative;
+    text-decoration: none;
+    border-radius: 50px;
+}
+
+.learnExploreBtn:hover {
+    background-position: 300px 0;
+    color: var(--background-color);
+}
+
+.learnExploreBtnText {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 3% 0px;
+    margin: 0px 15px 0px 15px
+}
