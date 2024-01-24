@@ -160,3 +160,36 @@ section {
     margin: 20px 0 0 0;
     line-height: 2.2rem;
 }
+
+.custom-shape-divider-top-1706091292 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 58px;
+} 
+
+.custom-shape-divider-top-1706091292 .shape-fill {
+    fill: var(--background-color-2)
+}
+
+.backedBySec {
+    display: flex;
+    justify-content: center;
+}
+
+.backedByContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 5% 0 5% 0;
+
+}
+
+.nus_img {
+    height: 10rem;
+}
+
+.backedByText {
+    font-weight: 400;
+    font-size: 1.2rem;
+}

@@ -4,6 +4,7 @@ import landing_img from "../../assets/caregiving.png"
 import support_img from "../../assets/support.png"
 import learn_img from "../../assets/learn.png"
 import grow_img from "../../assets/grow.png"
+import nus_img from "../../assets/NUS.png"
 import { useRef } from "react"
 
 const Home = () => {
@@ -63,7 +64,7 @@ const Home = () => {
                                 A Wealth of Resources at Your Fingertips
                             </div>
                             <div className="aboutUs_text">
-                                CareForWe rich with educational content covering a wide range of caregiving and health-related topics. 
+                                CareForWe is rich with educational content covering a wide range of caregiving and health-related topics. 
                                 Whether you're new to caregiving or have been in the role for years, our curated content is designed to enhance your knowledge and confidence.
                             </div>
                         </div>
@@ -83,6 +84,18 @@ const Home = () => {
                         </div>
                         
                     </div>
+                </div>
+                
+            </section>
+            <div class="custom-shape-divider-top-1706091292">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+            <section className="backedBySec">
+                <div className="backedByContent">
+                    <div className="backedByText">We are backed by:</div>
+                    <img src={nus_img} className="nus_img" />
                 </div>
                 
             </section>

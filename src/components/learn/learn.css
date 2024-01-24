@@ -106,3 +106,23 @@
     padding: 3% 0px;
     margin: 0px 15px 0px 15px
 }
+
+.wave2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave2 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 90px;
+}
+
+.wave2 .shape-fill {
+    fill: #C8F9FC;
+}
