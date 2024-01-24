@@ -8,7 +8,8 @@ function Popup({ isOpen, closePopup, children }) {
         <span className="close-button" onClick={closePopup}>
           &times;
         </span>
-        {children}
+        <div className="popup-content-children">{children}</div>
+        
       </div>
     </div>
   );
