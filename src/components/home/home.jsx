@@ -30,7 +30,7 @@ const Home = () => {
                             <text className='earlyAdoptBtnText'>Find Out More!</text>
                         </Link>   */}
                         <Link className="earlyAdoptBtn" to='/contact'>
-                            <text className='earlyAdoptBtnText'>Be an early adopter</text>
+                            <text className='earlyAdoptBtnText'>Create change with us</text>
                         </Link>  
 
                     </div>
