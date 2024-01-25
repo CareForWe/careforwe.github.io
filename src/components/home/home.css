@@ -56,11 +56,11 @@ section {
     height: 80%;
 }
 
-.homeFindOutMoreBtn {
+.earlyAdoptBtn {
     cursor: pointer;
     margin-top: 2rem;
     height: auto;
-    width: 25%;
+    width: 30%;
     min-width: fit-content;
     background: -webkit-linear-gradient(0deg, transparent 50%, var(--primary-text-color-1) 50%);
     background-size: 800px 80px;
@@ -75,16 +75,16 @@ section {
     border-radius: 50px;
 }
 
-.homeFindOutMoreBtn:hover {
+.earlyAdoptBtn:hover {
     background-position: 300px 0;
     color: var(--background-color);
 }
 
-.homeFindOutMoreBtnText {
+.earlyAdoptBtnText {
     font-size: 1.5rem;
     font-weight: 500;
     padding: 3% 0px;
-    margin: 0px 15px 0px 15px
+    margin: 0px 20px 0px 20px
 }
 
 .wave {

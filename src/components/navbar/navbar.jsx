@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logo_nav from "../../assets/cfw_index.png"
+import logo_nav from "../../assets/cfw_nav.png"
 import "./navbar.css"
 
 const Navbar = () => {
