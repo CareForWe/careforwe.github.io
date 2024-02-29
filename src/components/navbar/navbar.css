@@ -126,3 +126,10 @@
         display: none;
     }
 }
+
+@media only screen and (max-width: 340px) {
+    .logo_nav {
+        display: none;
+    }
+
+}

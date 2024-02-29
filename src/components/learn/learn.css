@@ -48,7 +48,8 @@
 .learn_path_sec {
     width: 80%;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
     margin: 5% 0 5% 0;
 }
 
@@ -73,7 +74,7 @@
 }
 
 .basic_img {
-    height: 15rem;
+    width: 15rem;
 }
 
 .learnExploreBtn {
@@ -125,4 +126,60 @@
 
 .wave2 .shape-fill {
     fill: #C8F9FC;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .doctor_img {
+        height: 15rem;
+    }
+
+    .welcomeTitle {
+        font-size: 2rem;
+    }
+
+    .welcomeText {
+        font-size: 1.2rem;
+    }
+
+    .learn_path_sec{
+        flex-direction: column;
+        align-items: center;
+        margin: 15% 0 15% 0;
+    }
+
+    .basic_img {
+        min-width: 8rem;
+        width: 30%;
+        margin: 0 0 10% 0;
+    }
+
+    .pathSec_title {
+        font-size: 1.5rem;
+    }
+
+    .pathSec_subtitle {
+        font-size: 1rem;
+    }
+  
+}
+
+@media only screen and (max-width: 340px) {
+
+    .doctor_img {
+        display: none;
+    }
+
+    .welcomeSec_content {
+        margin: 40px 0 40px 0;
+    }
+
+    .welcomeTitle {
+        font-size: 1.5rem;
+    }
+
+    .welcomeText {
+        font-size: 1rem;
+    }
+
 }
