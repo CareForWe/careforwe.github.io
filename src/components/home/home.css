@@ -193,3 +193,48 @@ section {
     font-weight: 400;
     font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 900px) {
+    .landing_subtitle {
+        font-size: 1.2rem;
+    }
+
+    .landing_pic {
+        display: none;
+    }
+
+    .landing_title {
+        font-size: 3.5rem;
+    }
+
+    .landing_text {
+        font-size: 1.2rem;
+    }
+
+    .earlyAdoptBtnText {
+        font-size: 1.2rem;
+    }
+
+    .aboutUs_title {
+        font-size: 2rem;
+        margin: 10% 0 10% 0;
+    }
+
+    .aboutUs_sec {
+        flex-direction: column;
+        margin: 15% 0 15% 0
+    }
+
+    .aboutUs_sec_img {
+        width: 80%;
+        margin: 0 0 10% 0
+    }
+
+    .aboutUs_subtitle {
+        font-size: 1.2rem;
+    }
+
+    .aboutUs_text {
+        font-size: 1.2rem;
+    }
+}

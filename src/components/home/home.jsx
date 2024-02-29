@@ -25,10 +25,6 @@ const Home = () => {
                         <div className="landing_text">
                             The Caregiver's Companion: Streamlining your caregiving journey, making every moment carefree.
                         </div>
-
-                        {/* <Link className="earlyAdoptBtn" to='/' onClick={handleClick}>
-                            <text className='earlyAdoptBtnText'>Find Out More!</text>
-                        </Link>   */}
                         <Link className="earlyAdoptBtn" to='/contact'>
                             <text className='earlyAdoptBtnText'>Create change with us</text>
                         </Link>  
