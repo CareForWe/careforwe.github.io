@@ -1,18 +1,18 @@
-import "./home.css"
-import { Link } from "react-router-dom"
-import landing_img from "../../assets/caregiving.png"
-import support_img from "../../assets/support.png"
-import learn_img from "../../assets/learn.png"
-import grow_img from "../../assets/grow.png"
-import nus_img from "../../assets/NUS.png"
-import { useRef } from "react"
+import "./home.css";
+import { Link } from "react-router-dom";
+import landing_img from "../../assets/caregiving.png";
+import support_img from "../../assets/support.png";
+import learn_img from "../../assets/learn.png";
+import grow_img from "../../assets/grow.png";
+import nus_img from "../../assets/NUS.png";
+import { useRef } from "react";
 
 const Home = () => {
     const ref = useRef(null);
 
     const handleClick = () => {
-        document.querySelector('.aboutUs').scrollIntoView({behavior: 'smooth'})
-    }
+        document.querySelector('.aboutUs').scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <div className="home">
@@ -28,18 +28,15 @@ const Home = () => {
                         <Link className="earlyAdoptBtn" to='/contact'>
                             <text className='earlyAdoptBtnText'>Create change with us</text>
                         </Link>  
-
                     </div>
                     <div className="landing_pic">
                         <img src={landing_img} className="landing_img" />
                     </div>
                 </div>
             </section>
-            <div class="wave">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-                </svg>
-            </div>
+            <svg id="visual" viewBox="0 500 900 84" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 527L18.8 525.8C37.7 524.7 75.3 522.3 112.8 517C150.3 511.7 187.7 503.3 225.2 508.8C262.7 514.3 300.3 533.7 337.8 533.7C375.3 533.7 412.7 514.3 450.2 507.8C487.7 501.3 525.3 507.7 562.8 521.5C600.3 535.3 637.7 556.7 675.2 560.5C712.7 564.3 750.3 550.7 787.8 541.3C825.3 532 862.7 527 881.3 524.5L900 522L900 601L881.3 601C862.7 601 825.3 601 787.8 601C750.3 601 712.7 601 675.2 601C637.7 601 600.3 601 562.8 601C525.3 601 487.7 601 450.2 601C412.7 601 375.3 601 337.8 601C300.3 601 262.7 601 225.2 601C187.7 601 150.3 601 112.8 601C75.3 601 37.7 601 18.8 601L0 601Z" fill="#C8F9FC" stroke-linecap="round" stroke-linejoin="miter"></path>
+            </svg>
             <section className="aboutUs">
                 <div className="aboutUs_content">
                     <div className="aboutUs_title">About CareforWe</div>
@@ -67,7 +64,6 @@ const Home = () => {
                                 Whether you're new to caregiving or have been in the role for years, our curated content is designed to enhance your knowledge and confidence.
                             </div>
                         </div>
-                        
                     </div>
 
                     <div className="aboutUs_sec">
@@ -81,25 +77,18 @@ const Home = () => {
                                 Through our chat feature, you can engage in real-time conversations with fellow caregivers, forming a network of support and solidarity.
                             </div>
                         </div>
-                        
                     </div>
                 </div>
-                
             </section>
-            <div class="custom-shape-divider-top-1706091292">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-                </svg>
-            </div>
+            <svg id="visual-bot" viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 96L21.5 103.5C43 111 86 126 128.8 120.3C171.7 114.7 214.3 88.3 257.2 81.3C300 74.3 343 86.7 385.8 87.3C428.7 88 471.3 77 514.2 89.2C557 101.3 600 136.7 642.8 144.7C685.7 152.7 728.3 133.3 771.2 127.2C814 121 857 128 878.5 131.5L900 135L900 0L878.5 0C857 0 814 0 771.2 0C728.3 0 685.7 0 642.8 0C600 0 557 0 514.2 0C471.3 0 428.7 0 385.8 0C343 0 300 0 257.2 0C214.3 0 171.7 0 128.8 0C86 0 43 0 21.5 0L0 0Z" fill="#C8F9FC" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
             <section className="backedBySec">
                 <div className="backedByContent">
                     <div className="backedByText">We are backed by:</div>
                     <img src={nus_img} className="nus_img" />
                 </div>
-                
             </section>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

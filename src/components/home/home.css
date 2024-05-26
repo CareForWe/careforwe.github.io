@@ -4,7 +4,7 @@
 }
 
 .landing {
-    height: calc(100vh - var(--nav_height));
+    height: calc(90vh - var(--nav_height));
     display: flex;
 }
 
@@ -84,92 +84,59 @@ section {
     font-size: 1.5rem;
     font-weight: 500;
     padding: 3% 0px;
-    margin: 0px 20px 0px 20px
+    margin: 0px 20px 0px 20px;
 }
 
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.wave svg {
+#visual, #visual-bot {
     position: relative;
-    display: block;
-    width: calc(110% + 1.3px);
-    height: 90px;
-}
-
-.wave .shape-fill {
-    fill: var(--background-color-2);
-}
+    z-index: 1000;
+} 
 
 .aboutUs {
-    background-color: var(--background-color-2);
-    width: 100vw;
     display: flex;
     justify-content: center;
+    background-color: var(--background-color-2);
 }
 
 .aboutUs_content {
-    width: 80%;
-    margin: 8% 0 5% 0;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
+    margin-top: 1rem;
+    width: 60%;
 }
 
 .aboutUs_title {
-    font-weight: 600;
-    font-size: 3.5rem;
-    color: var(--primary-text-color-1);
+    font-weight: 700;
+    font-size: 2.8rem;
+    text-align: center;
+    margin: 5% 0 5% 0;
 }
 
 .aboutUs_sec {
     display: flex;
-    flex-direction: row;
-    margin: 5% 0 2% 0;
+    justify-content: space-between;
     align-items: center;
-}
-
-.aboutUse_sec_textcontent {
-    display: flex;
-    flex-direction: column;
-    margin-left: 7%;
-    text-align: left;
+    flex-direction: row;
+    margin: 5% 0 5% 0;
 }
 
 .aboutUs_sec_img {
-    width: 25rem;
+    width: 30%;
 }
 
 .aboutUs_subtitle {
-    font-size: 1.3rem;
     font-weight: 600;
-    color: var(--primary-text-color-1);
+    font-size: 1.4rem;
+    margin: 0 0 5% 0;
 }
 
 .aboutUs_text {
-    font-size: 1.3rem;
     font-weight: 300;
-    margin: 20px 0 0 0;
+    font-size: 1.2rem;
+    margin: 0 5% 0 0;
     line-height: 2.2rem;
 }
 
-.custom-shape-divider-top-1706091292 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 58px;
-} 
-
-.custom-shape-divider-top-1706091292 .shape-fill {
-    fill: var(--background-color-2)
+.aboutUse_sec_textcontent {
+    width: 60%;
 }
 
 .backedBySec {
@@ -182,7 +149,6 @@ section {
     align-items: center;
     flex-direction: column;
     margin: 5% 0 5% 0;
-
 }
 
 .nus_img {
@@ -222,12 +188,12 @@ section {
 
     .aboutUs_sec {
         flex-direction: column;
-        margin: 15% 0 15% 0
+        margin: 15% 0 15% 0;
     }
 
     .aboutUs_sec_img {
         width: 80%;
-        margin: 0 0 10% 0
+        margin: 0 0 10% 0;
     }
 
     .aboutUs_subtitle {
@@ -263,12 +229,12 @@ section {
 
     .aboutUs_sec {
         flex-direction: column;
-        margin: 15% 0 15% 0
+        margin: 15% 0 15% 0;
     }
 
     .aboutUs_sec_img {
         width: 80%;
-        margin: 0 0 10% 0
+        margin: 0 0 10% 0;
     }
 
     .aboutUs_subtitle {
