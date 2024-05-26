@@ -186,6 +186,9 @@ section {
         margin: 10% 0 10% 0;
     }
 
+    .aboutUs_content {
+        width: 90%;
+    }
     .aboutUs_sec {
         flex-direction: column;
         margin: 15% 0 15% 0;
@@ -220,6 +223,10 @@ section {
 
     .earlyAdoptBtnText {
         font-size: 1rem;
+    }
+
+    .aboutUs_content {
+        width: 95%;
     }
 
     .aboutUs_title {
