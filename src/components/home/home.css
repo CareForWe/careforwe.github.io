@@ -174,7 +174,7 @@ section {
     }
 
     .landing_text {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .earlyAdoptBtnText {
@@ -189,13 +189,18 @@ section {
     .aboutUs_content {
         width: 90%;
     }
+
+    .aboutUse_sec_textcontent {
+        width: 80%;
+    }
+
     .aboutUs_sec {
         flex-direction: column;
         margin: 15% 0 15% 0;
     }
 
     .aboutUs_sec_img {
-        width: 80%;
+        width: 50%;
         margin: 0 0 10% 0;
     }
 
@@ -208,9 +213,9 @@ section {
     }
 }
 
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 500px) {
     .landing_subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .landing_title {
@@ -240,7 +245,7 @@ section {
     }
 
     .aboutUs_sec_img {
-        width: 80%;
+        width: 70%;
         margin: 0 0 10% 0;
     }
 
