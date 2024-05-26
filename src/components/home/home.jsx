@@ -1,17 +1,40 @@
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import "./home.css";
-import { Link } from "react-router-dom";
 import landing_img from "../../assets/caregiving.png";
 import support_img from "../../assets/support.png";
 import learn_img from "../../assets/learn.png";
 import grow_img from "../../assets/grow.png";
 import nus_img from "../../assets/NUS.png";
-import { useRef } from "react";
+import Popup from '../util/popup';
 
 const Home = () => {
     const ref = useRef(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [email, setEmail] = useState('');
 
     const handleClick = () => {
         document.querySelector('.aboutUs').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const openPopup = () => {
+        setIsPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setIsPopupOpen(false);
+    };
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Handle sending email to support@care4we.com
+        // This can be done using a backend service or an email API
+        alert(`We have received your email: ${email}. Thank you for your support!`);
+        closePopup();
     };
 
     return (
@@ -25,17 +48,17 @@ const Home = () => {
                         <div className="landing_text">
                             The Caregiver's Companion: Streamlining your caregiving journey, making every moment carefree.
                         </div>
-                        <Link className="earlyAdoptBtn" to='/contact'>
-                            <text className='earlyAdoptBtnText'>Create change with us</text>
-                        </Link>  
+                        <button className="earlyAdoptBtn" onClick={openPopup}>
+                            <text className='earlyAdoptBtnText'>Get early access</text>
+                        </button>  
                     </div>
                     <div className="landing_pic">
                         <img src={landing_img} className="landing_img" />
                     </div>
                 </div>
             </section>
-            <svg id="visual" viewBox="0 500 900 84" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 527L18.8 525.8C37.7 524.7 75.3 522.3 112.8 517C150.3 511.7 187.7 503.3 225.2 508.8C262.7 514.3 300.3 533.7 337.8 533.7C375.3 533.7 412.7 514.3 450.2 507.8C487.7 501.3 525.3 507.7 562.8 521.5C600.3 535.3 637.7 556.7 675.2 560.5C712.7 564.3 750.3 550.7 787.8 541.3C825.3 532 862.7 527 881.3 524.5L900 522L900 601L881.3 601C862.7 601 825.3 601 787.8 601C750.3 601 712.7 601 675.2 601C637.7 601 600.3 601 562.8 601C525.3 601 487.7 601 450.2 601C412.7 601 375.3 601 337.8 601C300.3 601 262.7 601 225.2 601C187.7 601 150.3 601 112.8 601C75.3 601 37.7 601 18.8 601L0 601Z" fill="#C8F9FC" stroke-linecap="round" stroke-linejoin="miter"></path>
+            <svg id="visual" viewBox="0 500 900 80" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 527L18.8 525.8C37.7 524.7 75.3 522.3 112.8 517C150.3 511.7 187.7 503.3 225.2 508.8C262.7 514.3 300.3 533.7 337.8 533.7C375.3 533.7 412.7 514.3 450.2 507.8C487.7 501.3 525.3 507.7 562.8 521.5C600.3 535.3 637.7 556.7 675.2 560.5C712.7 564.3 750.3 550.7 787.8 541.3C825.3 532 862.7 527 881.3 524.5L900 522L900 601L881.3 601C862.7 601 825.3 601 787.8 601C750.3 601 712.7 601 675.2 601C637.7 601 600.3 601 562.8 601C525.3 601 487.7 601 450.2 601C412.7 601 375.3 601 337.8 601C300.3 601 262.7 601 225.2 601C187.7 601 150.3 601 112.8 601C75.3 601 37.7 601 18.8 601L0 601Z" fill="#C8F9FC" stroke-linecap="round" stroke-linejoin="miter"></path>
             </svg>
             <section className="aboutUs">
                 <div className="aboutUs_content">
@@ -87,6 +110,16 @@ const Home = () => {
                     <img src={nus_img} className="nus_img" />
                 </div>
             </section>
+            <Popup isOpen={isPopupOpen} closePopup={closePopup}>
+                <form onSubmit={handleSubmit} className="popup-form">
+                    <label className="popup-label">
+                        Thank you for your interest!
+                        <div className='popup-enter-label'>You may enter your email here and we will reach out to you shortly:</div>
+                        <input type="email" value={email} onChange={handleEmailChange} required className="popup-input" />
+                    </label>
+                    <button type="submit" className="popup-submit">Submit</button>
+                </form>
+            </Popup>
         </div>
     );
 };
