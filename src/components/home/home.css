@@ -60,7 +60,7 @@ section {
     cursor: pointer;
     margin-top: 2rem;
     height: auto;
-    width: 30%;
+    width: 25%;
     min-width: fit-content;
     background: -webkit-linear-gradient(0deg, transparent 50%, var(--primary-text-color-1) 50%);
     background-size: 800px 80px;
@@ -87,10 +87,11 @@ section {
     margin: 0px 20px 0px 20px;
 }
 
-#visual, #visual-bot {
+#visual,
+#visual-bot {
     position: relative;
     z-index: 1000;
-} 
+}
 
 .aboutUs {
     display: flex;
@@ -158,6 +159,69 @@ section {
 .backedByText {
     font-weight: 400;
     font-size: 1.2rem;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popup-content-children {
+    margin-top: 20px;
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.2rem;
+    text-align: center;
+    width: 80%;
+}
+
+.popup-enter-label {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.popup-input {
+    width: 80%;
+    padding: 10px;
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    border-radius: px;
+    font-size: 1rem;
+}
+
+.popup-submit {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-text-color-1);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup-submit:hover {
+    background-color: #0056b3;
 }
 
 @media only screen and (max-width: 900px) {
