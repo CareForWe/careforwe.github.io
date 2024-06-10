@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import "./home.css";
 import landing_img from "../../assets/caregiving.png";
 import support_img from "../../assets/support.png";
@@ -9,7 +8,6 @@ import nus_img from "../../assets/NUS.png";
 import Popup from '../util/popup';
 
 const Home = () => {
-    const ref = useRef(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [email, setEmail] = useState('');
 
@@ -29,14 +27,6 @@ const Home = () => {
         setEmail(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle sending email to support@care4we.com
-        // This can be done using a backend service or an email API
-        alert(`We have received your email: ${email}. Thank you for your support!`);
-        closePopup();
-    };
-
     return (
         <div className="home">
             <section className="landing">
@@ -44,16 +34,15 @@ const Home = () => {
                     <div className="landing_content">
                         <div className="landing_subtitle">Make caregiving carefree with</div>
                         <div className="landing_title">Carefor<text className="landing_title_we">We</text></div>
-                        
                         <div className="landing_text">
                             The Caregiver's Companion: Streamlining your caregiving journey, making every moment carefree.
                         </div>
                         <button className="earlyAdoptBtn" onClick={openPopup}>
                             <text className='earlyAdoptBtnText'>Get early access</text>
-                        </button>  
+                        </button>
                     </div>
                     <div className="landing_pic">
-                        <img src={landing_img} className="landing_img" />
+                        <img src={landing_img} className="landing_img" alt="Caregiving" />
                     </div>
                 </div>
             </section>
@@ -64,39 +53,39 @@ const Home = () => {
                 <div className="aboutUs_content">
                     <div className="aboutUs_title">About CareforWe</div>
                     <div className="aboutUs_sec">
-                        <img src={support_img} className="aboutUs_sec_img" />
+                        <img src={support_img} className="aboutUs_sec_img" alt="Support" />
                         <div className="aboutUse_sec_textcontent">
                             <div className="aboutUs_subtitle">
                                 Empowering Caregivers with Knowledge and Support
                             </div>
                             <div className="aboutUs_text">
-                                At CareForWe, we are deeply committed to transforming the caregiving experience. 
+                                At CareForWe, we are deeply committed to transforming the caregiving experience.
                                 Recognizing the challenges and responsibilities that come with caregiving, we've created an innovative platform dedicated to supporting those who care for others.
                             </div>
                         </div>
                     </div>
 
                     <div className="aboutUs_sec">
-                        <img src={learn_img} className="aboutUs_sec_img" />
+                        <img src={learn_img} className="aboutUs_sec_img" alt="Learn" />
                         <div className="aboutUse_sec_textcontent">
                             <div className="aboutUs_subtitle">
                                 A Wealth of Resources at Your Fingertips
                             </div>
                             <div className="aboutUs_text">
-                                CareForWe is rich with educational content covering a wide range of caregiving and health-related topics. 
+                                CareForWe is rich with educational content covering a wide range of caregiving and health-related topics.
                                 Whether you're new to caregiving or have been in the role for years, our curated content is designed to enhance your knowledge and confidence.
                             </div>
                         </div>
                     </div>
 
                     <div className="aboutUs_sec">
-                        <img src={grow_img} className="aboutUs_sec_img" />
+                        <img src={grow_img} className="aboutUs_sec_img" alt="Grow" />
                         <div className="aboutUse_sec_textcontent">
                             <div className="aboutUs_subtitle">
                                 Connect, Share, and Grow Together
                             </div>
                             <div className="aboutUs_text">
-                                CareForWe fosters a supportive community. Our platform enables caregivers to connect and communicate with each other, share experiences, and offer advice. 
+                                CareForWe fosters a supportive community. Our platform enables caregivers to connect and communicate with each other, share experiences, and offer advice.
                                 Through our chat feature, you can engage in real-time conversations with fellow caregivers, forming a network of support and solidarity.
                             </div>
                         </div>
@@ -107,16 +96,32 @@ const Home = () => {
             <section className="backedBySec">
                 <div className="backedByContent">
                     <div className="backedByText">We are backed by:</div>
-                    <img src={nus_img} className="nus_img" />
+                    <img src={nus_img} className="nus_img" alt="NUS" />
                 </div>
             </section>
             <Popup isOpen={isPopupOpen} closePopup={closePopup}>
-                <form onSubmit={handleSubmit} className="popup-form">
+                <form
+                    action="https://care4we.us22.list-manage.com/subscribe/post?u=45f39e0a9d3c68ec1ad8ab53b&amp;id=a00e385214"
+                    method="post"
+                    target="_blank"
+                    noValidate
+                    className="popup-form"
+                >
                     <label className="popup-label">
                         Thank you for your interest!
                         <div className='popup-enter-label'>You may enter your email here and we will reach out to you shortly:</div>
-                        <input type="email" value={email} onChange={handleEmailChange} required className="popup-input" />
+                        <input
+                            type="email"
+                            name="EMAIL"
+                            value={email}
+                            onChange={handleEmailChange}
+                            required
+                            className="popup-input"
+                        />
                     </label>
+                    <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                        <input type="text" name="b_45f39e0a9d3c68ec1ad8ab53b_a00e385214" tabIndex="-1" value="" />
+                    </div>
                     <button type="submit" className="popup-submit">Submit</button>
                 </form>
             </Popup>
