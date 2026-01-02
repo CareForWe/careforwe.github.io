@@ -2,7 +2,7 @@ export interface AuthStatus {
     isAuthenticated: boolean;
 }
 
-const userServiceBaseUrl = process.env.NEXT_PUBLIC_USER_SERVICE_URL;
+const userServiceBaseUrl = import.meta.env.VITE_USER_SERVICE_URL;
 
 /**
  * Checks the authentication status (signed in or not) of the user by making a request to the backend.

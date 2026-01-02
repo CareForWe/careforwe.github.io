@@ -15,7 +15,7 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-const userServiceBaseUrl = process.env.NEXT_PUBLIC_USER_SERVICE_URL;
+const userServiceBaseUrl = import.meta.env.VITE_USER_SERVICE_URL;
 
 /**
  * Custom hook to access authentication context
