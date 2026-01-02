@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import ScrollToTop from './components/util/ScrollToTop.js'
-import { AuthProvider } from './components/context/authContext.js'
+import { AuthProvider } from './components/context/authContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
