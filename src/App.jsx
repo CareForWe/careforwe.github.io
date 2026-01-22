@@ -4,6 +4,12 @@ import Home from "./components/home/home";
 import Learn from "./components/learn/learn";
 import Contact from "./components/contact/CONTACT.JSX";
 import SignIn from "./components/signin/signin";
+import TestConnection from "./components/testConn";
+import { supabase } from "./supabaseClient";
+
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log('Auth state changed:', event, session)
+})
 
 function App() {
   return (
@@ -12,6 +18,7 @@ function App() {
       <div className='Appcontainer'>
         <Routes>
           <Route path = "/" element = {<Home/>} />
+          <Route path = "/testconnection" element = {<TestConnection/>} />
           <Route path = "/learn" element = {<Learn/>} />
           <Route path = "/contact" element = {<Contact/>} />
           <Route path = "/signin" element = {<SignIn/>} />
