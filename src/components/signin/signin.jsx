@@ -106,11 +106,11 @@ const SignIn = () => {
       const password = formData.get('password');
       const firstName = formData.get('firstName');
       const lastName = formData.get('lastName');
-  
+
       // #region agent log
       fetch('http://127.0.0.1:7242/ingest/aa1cf69e-d965-4793-a4b9-1bcb6aca8cf4', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ location: 'signin.jsx:85', message: 'FormData extracted', data: { email: email ? email.substring(0, 5) + '...' : 'null', passwordLength: password ? password.length : 0, firstName: firstName || 'null', lastName: lastName || 'null' }, timestamp: Date.now(), sessionId: 'debug-session', runId: 'run1', hypothesisId: 'A,B,C' }) }).catch(() => { });
       // #endregion
-  
+
       setLoading(true);
       setMessage('');
 
