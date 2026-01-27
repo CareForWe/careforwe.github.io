@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import doctor_img from "../../assets/doctor.png"
 import basic_img from "../../assets/basic.png"
 import cancer_img from "../../assets/cancer.png"
@@ -14,6 +14,7 @@ import logo_nav from "../../assets/cfw_index.png"
 
 // Sign In page to access content from the repo
 const SignIn = () => {
+  const navigate = useNavigate();
   // #region agent log - global error handler
   useEffect(() => {
     const handleError = (event) => {
@@ -145,6 +146,11 @@ const SignIn = () => {
 
         if (error) throw error;
         setMessage('Successfully signed in!');
+        // Redirect to videos page after successful sign in
+        setTimeout(() => {
+          navigate('/videos');
+        }, 1000);
+
       }
     } catch (error) {
       // #region agent log
