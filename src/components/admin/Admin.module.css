@@ -358,3 +358,26 @@
   background-color: #f1f3f5;
   border-color: #adb5bd;
 }
+
+/* Form field header (label + inline validation message) */
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+/* Radix Form.Message validation text */
+.formError {
+  font-size: 0.75rem;
+  color: #c0392b;
+  font-weight: 500;
+}
+
+/* Separator below page header in form views */
+.separator {
+  height: 1px;
+  background-color: #e9ecef;
+  border: none;
+  margin-bottom: 1.75rem;
+}
