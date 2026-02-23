@@ -5,16 +5,18 @@ import Learn from "./components/learn/learn";
 import Contact from "./components/contact/CONTACT.JSX";
 import SignIn from "./components/signin/signin";
 import Videos from "./components/videos/videos";
+import Admin from "./components/admin/Admin";
 import AuthCallback from "./components/auth/AuthCallback";
 import TestConnection from "./components/testConn";
 import { useAuth } from "./components/context/authContext";
+import LoadingPage from "./components/util/LoadingPage";
 
-// Protected Route Component
+// Protected Route Component — requires authentication
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="loading-container">Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (!user) {
@@ -24,16 +26,35 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Public Route Component (redirects if already signed in)
-const PublicRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+// Admin Route Component — requires ADMIN role; non-admins go to /videos
+const AdminRoute = ({ children }) => {
+  const { user, role, loading } = useAuth();
 
   if (loading) {
-    return <div className="loading-container">Loading...</div>;
+    return <LoadingPage />;
+  }
+
+  if (!user) {
+    return <Navigate to="/signin" replace />;
+  }
+
+  if (role !== 'ADMIN') {
+    return <Navigate to="/videos" replace />;
+  }
+
+  return children;
+};
+
+// Public Route Component (redirects if already signed in)
+const PublicRoute = ({ children }) => {
+  const { user, role, loading } = useAuth();
+
+  if (loading) {
+    return <LoadingPage />;
   }
 
   if (user) {
-    return <Navigate to="/videos" replace />;
+    return <Navigate to={role === 'ADMIN' ? '/admin' : '/videos'} replace />;
   }
 
   return children;
@@ -61,6 +82,14 @@ function App() {
               <ProtectedRoute>
                 <Videos />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
             }
           />
           <Route

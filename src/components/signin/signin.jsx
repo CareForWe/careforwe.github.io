@@ -145,10 +145,30 @@ const SignIn = () => {
         });
 
         if (error) throw error;
+
+        //Get User 
+        const { data: { user } } = await supabase.auth.getUser();
+        const userID = user.id;
+
+        const { data: roleData, error: roleError } = await supabase
+          .from('user_roles')   // ← fix table name to match your schema
+          .select('role')
+          .eq('user_id', userID)
+          .maybeSingle();
+
+        if (roleError) {
+          console.error('Error fetching role:', roleError);
+          throw roleError; // ← don't silently continue
+        }
+
+        const userRole = roleData?.role === 'ADMIN' ? 'ADMIN' : 'USER';
+
+
         setMessage('Successfully signed in!');
-        // Redirect to videos page after successful sign in
+        // Redirect based on role after successful sign in
+        
         setTimeout(() => {
-          navigate('/videos');
+          navigate(userRole === 'ADMIN' ? '/admin' : '/videos');
         }, 1000);
 
       }

@@ -18,8 +18,15 @@ const AuthCallback = () => {
         }
 
         if (session) {
-          // Successfully authenticated, redirect to videos page
-          navigate('/videos');
+          // Fetch role to determine redirect destination
+          const { data: roleData } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', session.user.id)
+            .maybeSingle();
+
+          const userRole = roleData?.role === 'ADMIN' ? 'ADMIN' : 'USER';
+          navigate(userRole === 'ADMIN' ? '/admin' : '/videos');
         } else {
           // No session, redirect to sign in
           navigate('/signin');
@@ -41,4 +48,3 @@ const AuthCallback = () => {
 };
 
 export default AuthCallback;
-
