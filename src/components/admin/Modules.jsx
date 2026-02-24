@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Form, Separator } from 'radix-ui';
 import styles from './Admin.module.css';
 import { supabase } from '../../supabaseClient';
 
-const PSEUDO_MODULES = [
-  { id: 1, number: '1.0', name: 'Medical Essentials for Caregivers' },
-];
+function DeleteConfirmModal({ moduleName, onConfirm, onCancel }) {
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalCard}>
+        <h2 className={styles.modalTitle}>Delete Module</h2>
+        <p className={styles.modalBody}>
+          Are you sure you want to delete <strong>{moduleName}</strong>? This action cannot be undone.
+        </p>
+        <div className={styles.modalActions}>
+          <button className={styles.cancelButton} onClick={onCancel}>
+            Cancel
+          </button>
+          <button className={styles.deleteButton} onClick={onConfirm}>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-function ActionMenu({ item, actions }) {
+function ActionMenu({ item, onDelete }) {
   const [open, setOpen] = useState(false);
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(e) {
       if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false);
@@ -20,11 +37,6 @@ function ActionMenu({ item, actions }) {
     if (open) document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open]);
-
-  const handleAction = (action) => {
-    setOpen(false);
-    console.log(`${action} on:`, item.name);
-  };
 
   return (
     <div className={styles.actionCell} ref={ref}>
@@ -37,33 +49,34 @@ function ActionMenu({ item, actions }) {
       </button>
       {open && (
         <div className={styles.dropdown}>
-          {actions.map((action) => (
-            <button
-              key={action}
-              className={`${styles.dropdownItem} ${action === 'Delete' ? styles.dropdownItemDelete : ''}`}
-              onClick={() => handleAction(action)}
-            >
-              {action}
-            </button>
-          ))}
+          <button
+            className={`${styles.dropdownItem} ${styles.dropdownItemDelete}`}
+            onClick={() => { setOpen(false); onDelete(item); }}
+          >
+            Delete
+          </button>
         </div>
       )}
     </div>
   );
 }
 
-function CreateModuleForm({ onCancel }) {
+function CreateModuleForm({ onCancel, onSaved }) {
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase.from('modules').insert({ number, name, is_universal: true });
+    const { data, error } = await supabase
+      .from('modules')
+      .insert({ number, name, is_universal: true, created_at: new Date().toISOString() })
+      .select();
     if (error) {
-      console.error('Error saving module:', error);
+      console.error('Error saving module:', error.message);
       return;
     }
-    console.log('Save Module:', { number, name, is_universal: true });
+    console.log('Module inserted:', data?.[0]);
+    onSaved();
   };
 
   return (
@@ -128,13 +141,59 @@ function CreateModuleForm({ onCancel }) {
 
 export function ModulesView() {
   const [showCreate, setShowCreate] = useState(false);
+  const [modules, setModules] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
+  const [pendingDelete, setPendingDelete] = useState(null);
+
+  useEffect(() => {
+    fetchModules();
+  }, []);
+
+  async function fetchModules() {
+    setLoading(true);
+    setFetchError(null);
+    const { data, error } = await supabase
+      .from('modules')
+      .select('id, number, name')
+      .order('number', { ascending: true });
+    if (error) {
+      console.error('Error fetching modules:', error.message);
+      setFetchError(error.message);
+    } else {
+      setModules(data ?? []);
+      console.log("Modules seen:", modules.toString())
+    }
+    setLoading(false);
+  }
+
+  async function handleConfirmDelete() {
+    const { error } = await supabase.from('modules').delete().eq('id', pendingDelete.id);
+    if (!error) {
+      setModules((prev) => prev.filter((m) => m.id !== pendingDelete.id));
+    }
+    setPendingDelete(null);
+  }
 
   if (showCreate) {
-    return <CreateModuleForm onCancel={() => setShowCreate(false)} />;
+    return (
+      <CreateModuleForm
+        onCancel={() => setShowCreate(false)}
+        onSaved={() => { setShowCreate(false); fetchModules(); }}
+      />
+    );
   }
 
   return (
     <>
+      {pendingDelete && (
+        <DeleteConfirmModal
+          moduleName={pendingDelete.name}
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setPendingDelete(null)}
+        />
+      )}
+
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Modules</h1>
         <button className={styles.createButton} onClick={() => setShowCreate(true)}>
@@ -143,8 +202,11 @@ export function ModulesView() {
       </div>
 
       <p className={styles.entryMeta}>
-        Showing 1 to {PSEUDO_MODULES.length} of {PSEUDO_MODULES.length} entries
+        {loading ? 'Loading…' : `Showing 1 to ${modules.length} of ${modules.length} entries`}
       </p>
+      {fetchError && (
+        <p className={styles.fetchError}>Failed to load modules: {fetchError}</p>
+      )}
 
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
@@ -156,7 +218,7 @@ export function ModulesView() {
             </tr>
           </thead>
           <tbody>
-            {PSEUDO_MODULES.map((mod) => (
+            {!loading && modules.map((mod) => (
               <tr key={mod.id}>
                 <td>
                   <span className={styles.numberBadge}>{mod.number}</span>
@@ -165,7 +227,7 @@ export function ModulesView() {
                   <span className={styles.moduleName}>{mod.name}</span>
                 </td>
                 <td>
-                  <ActionMenu item={mod} actions={['Edit', 'Delete']} />
+                  <ActionMenu item={mod} onDelete={setPendingDelete} />
                 </td>
               </tr>
             ))}

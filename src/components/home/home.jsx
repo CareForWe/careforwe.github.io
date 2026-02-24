@@ -120,7 +120,7 @@ const Home = () => {
                         />
                     </label>
                     <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-                        <input type="text" name="b_45f39e0a9d3c68ec1ad8ab53b_a00e385214" tabIndex="-1" value="" />
+                        <input type="text" name="b_45f39e0a9d3c68ec1ad8ab53b_a00e385214" tabIndex="-1" defaultValue="" readOnly />
                     </div>
                     <button type="submit" className="popup-submit">Submit</button>
                 </form>
