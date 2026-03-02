@@ -448,3 +448,57 @@
 .deleteButton:hover {
   background-color: #a93226;
 }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.pageBtn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #495057;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background-color: #f1f3f5;
+  border-color: #adb5bd;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pageBtnActive {
+  background-color: #1a3c5e;
+  color: #ffffff;
+  border-color: #1a3c5e;
+}
+
+.pageBtnActive:hover:not(:disabled) {
+  background-color: #14304e;
+}
+
+.pageEllipsis {
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #6c757d;
+}

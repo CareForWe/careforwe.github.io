@@ -2,12 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form } from 'radix-ui';
 import styles from './Admin.module.css';
 import { supabase } from '../../supabaseClient';
+import { Pagination, PAGE_SIZE } from './Pagination';
 
 const ListingStatus = Object.freeze({
-  DRAFT: 'Draft',
-  PUBLISHED: 'Published',
-  ARCHIVED: 'Archived',
+  DRAFT: 'draft',
+  PUBLISHED: 'published',
+  ARCHIVED: 'archived',
 });
+
+const STATUS_LABEL = {
+  [ListingStatus.DRAFT]: 'Draft',
+  [ListingStatus.PUBLISHED]: 'Published',
+  [ListingStatus.ARCHIVED]: 'Archived',
+};
 
 function StatusBadge({ status }) {
   const classMap = {
@@ -18,7 +25,7 @@ function StatusBadge({ status }) {
   return (
     <span className={`${styles.badge} ${classMap[status] ?? styles.badgeDraft}`}>
       {status === ListingStatus.PUBLISHED && <span style={{ marginRight: '4px' }}>●</span>}
-      {status}
+      {STATUS_LABEL[status] ?? status}
     </span>
   );
 }
@@ -196,7 +203,7 @@ function CreateListingModal({ onCancel, onSaved }) {
                 required
               >
                 {Object.values(ListingStatus).map((s) => (
-                  <option key={s} value={s}>{s}</option>
+                  <option key={s} value={s}>{STATUS_LABEL[s]}</option>
                 ))}
               </select>
             </Form.Control>
@@ -249,6 +256,7 @@ export function ListingsView() {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [pendingDelete, setPendingDelete] = useState(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchListings();
@@ -266,6 +274,7 @@ export function ListingsView() {
       setFetchError(error.message);
     } else {
       setListings(data ?? []);
+      setPage(1);
     }
     setLoading(false);
   }
@@ -277,6 +286,11 @@ export function ListingsView() {
     }
     setPendingDelete(null);
   }
+
+  const totalPages = Math.max(1, Math.ceil(listings.length / PAGE_SIZE));
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const pageEnd = Math.min(page * PAGE_SIZE, listings.length);
+  const pagedListings = listings.slice(pageStart, pageEnd);
 
   return (
     <>
@@ -303,7 +317,11 @@ export function ListingsView() {
       </div>
 
       <p className={styles.entryMeta}>
-        {loading ? 'Loading…' : `Showing 1 to ${listings.length} of ${listings.length} entries`}
+        {loading
+          ? 'Loading…'
+          : listings.length === 0
+          ? 'No entries found'
+          : `Showing ${pageStart + 1} to ${pageEnd} of ${listings.length} entries`}
       </p>
 
       {fetchError && (
@@ -321,7 +339,7 @@ export function ListingsView() {
             </tr>
           </thead>
           <tbody>
-            {!loading && listings.map((listing) => (
+            {!loading && pagedListings.map((listing) => (
               <tr key={listing.id}>
                 <td>
                   <div className={styles.moduleCell}>
@@ -347,6 +365,8 @@ export function ListingsView() {
           </tbody>
         </table>
       </div>
+
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </>
   );
 }

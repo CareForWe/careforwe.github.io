@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Form, Separator } from 'radix-ui';
 import styles from './Admin.module.css';
 import { supabase } from '../../supabaseClient';
+import { Pagination, PAGE_SIZE } from './Pagination';
 
 function DeleteConfirmModal({ moduleName, onConfirm, onCancel }) {
   return (
@@ -145,6 +146,7 @@ export function ModulesView() {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [pendingDelete, setPendingDelete] = useState(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchModules();
@@ -162,7 +164,7 @@ export function ModulesView() {
       setFetchError(error.message);
     } else {
       setModules(data ?? []);
-      console.log("Modules seen:", modules.toString())
+      setPage(1);
     }
     setLoading(false);
   }
@@ -174,6 +176,11 @@ export function ModulesView() {
     }
     setPendingDelete(null);
   }
+
+  const totalPages = Math.max(1, Math.ceil(modules.length / PAGE_SIZE));
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const pageEnd = Math.min(page * PAGE_SIZE, modules.length);
+  const pagedModules = modules.slice(pageStart, pageEnd);
 
   if (showCreate) {
     return (
@@ -202,7 +209,11 @@ export function ModulesView() {
       </div>
 
       <p className={styles.entryMeta}>
-        {loading ? 'Loading…' : `Showing 1 to ${modules.length} of ${modules.length} entries`}
+        {loading
+          ? 'Loading…'
+          : modules.length === 0
+          ? 'No entries found'
+          : `Showing ${pageStart + 1} to ${pageEnd} of ${modules.length} entries`}
       </p>
       {fetchError && (
         <p className={styles.fetchError}>Failed to load modules: {fetchError}</p>
@@ -218,7 +229,7 @@ export function ModulesView() {
             </tr>
           </thead>
           <tbody>
-            {!loading && modules.map((mod) => (
+            {!loading && pagedModules.map((mod) => (
               <tr key={mod.id}>
                 <td>
                   <span className={styles.numberBadge}>{mod.number}</span>
@@ -234,6 +245,8 @@ export function ModulesView() {
           </tbody>
         </table>
       </div>
+
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </>
   );
 }
